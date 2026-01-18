@@ -15,24 +15,24 @@ DAV1D_LIBRARY_PATH := external/dav1d
 
 # Enable this if you want to support loading JPEG images using libjpeg
 # The library path should be a relative path to this directory.
-SUPPORT_JPG ?= false
+SUPPORT_JPG ?= true
 SUPPORT_SAVE_JPG ?= true
 JPG_LIBRARY_PATH := external/jpeg
 
 # Enable this if you want to support loading JPEG-XL images
 # The library path should be a relative path to this directory.
-SUPPORT_JXL ?= false
+SUPPORT_JXL ?= true
 JXL_LIBRARY_PATH := external/libjxl
 
 # Enable this if you want to support loading PNG images using libpng
 # The library path should be a relative path to this directory.
-SUPPORT_PNG ?= false
+SUPPORT_PNG ?= true
 SUPPORT_SAVE_PNG ?= true
 PNG_LIBRARY_PATH := external/libpng
 
 # Enable this if you want to support loading WebP images
 # The library path should be a relative path to this directory.
-SUPPORT_WEBP ?= false
+SUPPORT_WEBP ?= true
 WEBP_LIBRARY_PATH := external/libwebp
 
 
@@ -93,12 +93,14 @@ LOCAL_SRC_FILES :=  \
     src/IMG_xv.c
 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
+LOCAL_C_INCLUDES += $(SDL_IMAGE_LOCAL_PATH)/../../../../../sdl2/include
+
 LOCAL_CFLAGS := -DLOAD_BMP -DLOAD_GIF -DLOAD_LBM -DLOAD_PCX -DLOAD_PNM \
                 -DLOAD_SVG -DLOAD_TGA -DLOAD_XCF -DLOAD_XPM -DLOAD_XV  \
                 -DLOAD_QOI
 LOCAL_LDLIBS :=
 LOCAL_STATIC_LIBRARIES :=
-LOCAL_SHARED_LIBRARIES := SDL2
+#LOCAL_SHARED_LIBRARIES := SDL2
 
 ifeq ($(USE_STBIMAGE),true)
     LOCAL_CFLAGS += -DLOAD_JPG -DLOAD_PNG -DUSE_STBIMAGE
@@ -151,6 +153,12 @@ ifeq ($(SUPPORT_WEBP),true)
 endif
 
 LOCAL_EXPORT_C_INCLUDES += $(LOCAL_PATH)/include
+
+ifeq ($(APP_OPTIM),debug)
+	LOCAL_LDLIBS += $(SDL_IMAGE_LOCAL_PATH)/../../../../../sdl2/android-project/app/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/$(TARGET_ARCH_ABI)/libSDL2.so
+else
+	LOCAL_LDLIBS += $(SDL_IMAGE_LOCAL_PATH)/../../../../../sdl2/android-project/app/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/$(TARGET_ARCH_ABI)/libSDL2.so
+endif
 
 include $(BUILD_SHARED_LIBRARY)
 
