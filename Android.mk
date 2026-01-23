@@ -21,7 +21,7 @@ JPG_LIBRARY_PATH := external/jpeg
 
 # Enable this if you want to support loading JPEG-XL images
 # The library path should be a relative path to this directory.
-SUPPORT_JXL ?= true
+SUPPORT_JXL ?= false
 JXL_LIBRARY_PATH := external/libjxl
 
 # Enable this if you want to support loading PNG images using libpng
@@ -95,6 +95,7 @@ LOCAL_SRC_FILES :=  \
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
 LOCAL_C_INCLUDES += $(SDL_IMAGE_LOCAL_PATH)/../../../../../sdl2/include
 LOCAL_C_INCLUDES += $(SDL_IMAGE_LOCAL_PATH)/../../../../../libtiff/src/main/jni/libtiff/libtiff
+LOCAL_C_INCLUDES += $(SDL_IMAGE_LOCAL_PATH)/../../../../../libtiff/src/main/jni/include
 
 LOCAL_CFLAGS := -DLOAD_BMP -DLOAD_GIF -DLOAD_LBM -DLOAD_PCX -DLOAD_PNM \
                 -DLOAD_SVG -DLOAD_TGA -DLOAD_XCF -DLOAD_XPM -DLOAD_XV  \
