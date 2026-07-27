@@ -159,11 +159,9 @@ LOCAL_EXPORT_C_INCLUDES += $(LOCAL_PATH)/include
 ifeq ($(APP_OPTIM),debug)
 	LOCAL_LDLIBS += $(SDL_IMAGE_LOCAL_PATH)/../../../../../sdl2-compat/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/$(TARGET_ARCH_ABI)/libSDL2.so
 	LOCAL_LDLIBS += $(SDL_IMAGE_LOCAL_PATH)/../../../../../libtiff/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/$(TARGET_ARCH_ABI)/libtiff.so
-	LOCAL_LDLIBS += $(SDL_IMAGE_LOCAL_PATH)/../../../../../SAFFAL/saffal/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/$(TARGET_ARCH_ABI)/libsaffal.so
 else
 	LOCAL_LDLIBS += $(SDL_IMAGE_LOCAL_PATH)/../../../../../sdl2-compat/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/$(TARGET_ARCH_ABI)/libSDL2.so
 	LOCAL_LDLIBS += $(SDL_IMAGE_LOCAL_PATH)/../../../../../libtiff/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/$(TARGET_ARCH_ABI)/libtiff.so
-	LOCAL_LDLIBS += $(SDL_IMAGE_LOCAL_PATH)/../../../../../SAFFAL/saffal/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/$(TARGET_ARCH_ABI)/libsaffal.so
 endif
 
 LOCAL_CFLAGS += -DLOAD_TIF
